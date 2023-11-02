@@ -6,6 +6,8 @@ import { Home } from "./views/home";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
+import  AddNewContact  from "./views/AddNewContact";
+import  ContactList  from "./views/ContactList";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -22,10 +24,12 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/demo" element={<Demo />} />
-						<Route path="/single/:theid" element={<Single />} />
-						<Route path="*" element={<h1>Not found!</h1>} />
+						<Route exact path="/" element={<Home />} />
+						<Route exact path="/demo" element={<Demo />} />
+						<Route exact path="/AddNewContact" element={<AddNewContact />} />
+						<Route exact path="/ContactList" element={<ContactList />} />
+						{/* <Route exact path="/single/:theid" element={<Single />} /> */}
+						<Route exact path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 					<Footer />
 				</ScrollToTop>
