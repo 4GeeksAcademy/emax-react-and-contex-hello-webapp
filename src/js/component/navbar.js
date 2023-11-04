@@ -19,11 +19,11 @@ export const Navbar = () => {
 
 				<ul className="listnavb">
 
-					<li>
+					<li className="nitem">
 						<p>About us</p>
 					</li>
 
-					<li>
+					<li className="nitem">
 						<p>Contact</p>
 					</li>
 

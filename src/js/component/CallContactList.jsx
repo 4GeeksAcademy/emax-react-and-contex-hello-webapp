@@ -18,28 +18,52 @@ const CallContactList = () => {
 
       {store.Contacts.map((item, index) => (
 
-        <div key={index} className="card mb-3" style={{ maxWidth: "540px" }}>
+
+
+        <div key={index} className="card mb-3 mx-auto" style={{ maxWidth: "800px" }}>
+
           <div className="row g-0">
-            <div className="col-md-4">
-              <img src="..." className="img-fluid rounded-start" alt="..." />
+            <div className="col-md-3">
+              <img src="https://img.freepik.com/premium-vector/3d-contact-changeable-icon-design_656236-34.jpg?w=2000" className={style.contactimg} alt="..." />
             </div>
             <div className="col-md-8">
               <div className="card-body">
                 <h5 className="card-title">{item.full_name}</h5>
-                <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                <p className="card-text"><i className="fa-solid fa-location-dot px-2"></i> {item.adress}</p>
+                <p className="card-text"><i className="fa-solid fa-phone px-2 "></i> {item.phone}</p>
+                <p className="card-text"><i className="fa-solid fa-envelope px-2"></i>{item.email}</p>
               </div>
             </div>
+
+            <div className='col-md-1 icons'>
+
+              <i className="fa-solid fa-pencil" style={{ padding: "10px" }}></i>
+              <i className="fa-solid fa-trash"></i>
+
+            </div>
+
+
           </div>
+
         </div>
 
       ))}
 
-      <Link to="/">
+      <div className={style.butonsc}>
 
-        <button className="btn btn-primary">Back home</button>
+        <Link to="/demo">
 
-      </Link>
+          <i className="fa-regular fa-circle-left fa-2xl" style={{ color: "#3cadc3" }}></i>
+
+        </Link>
+
+        <Link to="/">
+
+          <button className="btn btn-primary">Back home</button>
+
+        </Link>
+
+      </div>
 
     </div>
   )

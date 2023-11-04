@@ -32,11 +32,21 @@ const CallAddNewContact = () => {
         <button className="btn btn-primary large-buttom" type="button">Save</button>
       </div>
 
-      <Link to="/">
+      <div class="butons">
 
-        <button className="btn btn-primary">Back home</button>
+        <Link to="/demo">
 
-      </Link>
+          <i class="fa-regular fa-circle-left fa-2xl" style={{ color: "#3cadc3" }}></i>
+
+        </Link>
+
+        <Link to="/">
+
+          <button className="btn btn-primary">Back home</button>
+
+        </Link>
+
+      </div>
 
     </div>
   )
