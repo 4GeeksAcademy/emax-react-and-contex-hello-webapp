@@ -1,0 +1,8 @@
+.footer{
+    display: flex;
+    margin-top: 40px;
+}
+.phara{
+   font-size: 20px;
+   padding: 10px;
+}

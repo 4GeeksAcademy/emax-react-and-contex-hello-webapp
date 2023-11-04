@@ -1,44 +1,26 @@
+import { isRouteErrorResponse } from "react-router";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			Contacts: [
-				{
-					full_name: "Dave Bradley",
-                    email: "dave@gmail.com",
-                    phone:"7864445566",
-					address:"47568 NW 34ST, 33434 FL, USA",
-				},
-				{
-					full_name: "juan",
-                    email: "da@gmail.com",
-                    phone:"78644455665454",
-					address:"47568 NW 34ST, 33434 FL,",
-				}
-			]
+			Contacts: []
+
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+			getContacts: async () => {
+				try {
+					const response = await fetch("https://playground.4geeks.com/apis/fake/contact/agenda/Ema")
+					if (response.ok) {
+						const data = await response.json();
+						let store = getStore();
+						setStore({ ...store, Contacts: data });
+						console.log(data)
+					}
+				}
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
+				catch (error) {
+					console.log("Algo salio mal", (error));
+				}
 			}
 		}
 	};
