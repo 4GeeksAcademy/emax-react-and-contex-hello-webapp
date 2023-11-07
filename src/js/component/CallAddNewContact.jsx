@@ -1,42 +1,69 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import { Link } from "react-router-dom";
 import "../../styles/AddNewContact.css"
+import { Context } from '../store/appContext';
 
 const CallAddNewContact = () => {
+  const { store, actions } = useContext(Context);
+
+  const [data, setData] = useState({
+    full_name: "",
+    email: "",
+    phone: "",
+    address: "",
+    agenda_slug: ""
+  })
+
+  const handlerInput = (e) => {
+    e.preventDefault();
+    actions.addContact(data);
+  }
+
+  const info = (e) => {
+    setData({
+      ...data, [e.target.name]: e.target.value
+    })
+  }
+
   return (
 
     <div>
 
       <div className="addContainer">
 
-        <div class="mb-3">
-          <label for="formGroupExampleInput" class="form-label">Full name:</label>
-          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Full name" />
+        <div className="mb-3">
+          <label className="form-label">Agenda:</label>
+          <input type="text" className="form-control" name='agenda_slug' onChange={info} value={data.agenda_slug} id="formGroupExampleInput" placeholder="Full name" />
         </div>
-        <div class="mb-3">
-          <label for="formGroupExampleInput2" class="form-label">Email:</label>
-          <input type="email" class="form-control" id="formGroupExampleInput2" placeholder="Enter email" />
+
+        <div className="mb-3">
+          <label className="form-label">Full name:</label>
+          <input type="text" className="form-control" name='full_name' onChange={info} value={data.full_name} id="formGroupExampleInput" placeholder="Full name" />
         </div>
-        <div class="mb-3">
-          <label for="formGroupExampleInput" class="form-label">Phone:</label>
-          <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Enter phone" />
+        <div className="mb-3">
+          <label className="form-label">Email:</label>
+          <input type="email" className="form-control" name='email' onChange={info} value={data.email} id="formGroupExampleInput2" placeholder="Enter email" />
         </div>
-        <div class="mb-3">
-          <label for="formGroupExampleInput2" class="form-label">Adress:</label>
-          <input type="email" class="form-control" id="formGroupExampleInput2" placeholder="Enter adress" />
+        <div className="mb-3">
+          <label className="form-label">Phone:</label>
+          <input type="number" className="form-control" name='phone' onChange={info} value={data.phone} id="formGroupExampleInput" placeholder="Enter phone" />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Adress:</label>
+          <input type="email" className="form-control" name='address' onChange={info} value={data.address} id="formGroupExampleInput2" placeholder="Enter adress" />
         </div>
 
       </div>
 
       <div className="d-grid gap-2">
-        <button className="btn btn-primary large-buttom" type="button">Save</button>
+        <button className="btn btn-primary large-buttom" onClick={handlerInput} type="button">Save</button>
       </div>
 
-      <div class="butons">
+      <div className="butons">
 
         <Link to="/demo">
 
-          <i class="fa-regular fa-circle-left fa-2xl" style={{ color: "#3cadc3" }}></i>
+          <i className="fa-regular fa-circle-left fa-2xl" style={{ color: "#3cadc3" }}></i>
 
         </Link>
 

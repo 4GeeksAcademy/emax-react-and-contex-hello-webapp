@@ -29,7 +29,7 @@ const CallContactList = () => {
             <div className="col-md-8">
               <div className="card-body">
                 <h5 className="card-title">{item.full_name}</h5>
-                <p className="card-text"><i className="fa-solid fa-location-dot px-2"></i> {item.adress}</p>
+                <p className="card-text"><i className="fa-solid fa-location-dot px-2"></i> {item.address}</p>
                 <p className="card-text"><i className="fa-solid fa-phone px-2 "></i> {item.phone}</p>
                 <p className="card-text"><i className="fa-solid fa-envelope px-2"></i>{item.email}</p>
               </div>

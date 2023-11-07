@@ -3,7 +3,11 @@ import { isRouteErrorResponse } from "react-router";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			Contacts: []
+			Contacts: [],
+			FormData: {
+
+			}
+
 
 		},
 		actions: {
@@ -21,6 +25,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 				catch (error) {
 					console.log("Algo salio mal", (error));
 				}
+			},
+			addContact: async (data) => {
+				const actions = getActions();
+				try {
+
+					const response = await fetch("https://playground.4geeks.com/apis/fake/contact", {
+						method: "Post",
+						body: JSON.stringify(data),
+						headers: {
+							"Content-Type": "application/json"
+						}
+
+					})
+
+					console.log("respueta", response)
+
+					if (response.ok) {
+						actions.getContacts();
+						alert("contacto creado con exito")
+					} else {
+						alert("error al crear contacto")
+					}
+
+
+
+				}
+				catch (error) {
+
+					console.log("aca esta el error", error)
+
+				}
+
 			}
 		}
 	};
