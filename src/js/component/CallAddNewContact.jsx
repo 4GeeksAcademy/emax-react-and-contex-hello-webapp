@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/AddNewContact.css"
 import { Context } from '../store/appContext';
 
 const CallAddNewContact = () => {
+  const navigate = useNavigate()
   const { store, actions } = useContext(Context);
 
   const [data, setData] = useState({
@@ -11,12 +12,13 @@ const CallAddNewContact = () => {
     email: "",
     phone: "",
     address: "",
-    agenda_slug: ""
+    agenda_slug: "Ema"
   })
 
   const handlerInput = (e) => {
     e.preventDefault();
     actions.addContact(data);
+    navigate("/ContactList")
   }
 
   const info = (e) => {
@@ -32,11 +34,6 @@ const CallAddNewContact = () => {
       <div className="addContainer">
 
         <div className="mb-3">
-          <label className="form-label">Agenda:</label>
-          <input type="text" className="form-control" name='agenda_slug' onChange={info} value={data.agenda_slug} id="formGroupExampleInput" placeholder="Full name" />
-        </div>
-
-        <div className="mb-3">
           <label className="form-label">Full name:</label>
           <input type="text" className="form-control" name='full_name' onChange={info} value={data.full_name} id="formGroupExampleInput" placeholder="Full name" />
         </div>
@@ -50,7 +47,7 @@ const CallAddNewContact = () => {
         </div>
         <div className="mb-3">
           <label className="form-label">Adress:</label>
-          <input type="email" className="form-control" name='address' onChange={info} value={data.address} id="formGroupExampleInput2" placeholder="Enter adress" />
+          <input type="email" className="form-control" name='address' onChange={info} value={data.address} id="formGroupExampleInput2" placeholder="Enter address" />
         </div>
 
       </div>

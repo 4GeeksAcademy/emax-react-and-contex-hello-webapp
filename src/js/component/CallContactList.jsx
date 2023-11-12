@@ -1,24 +1,40 @@
 import React, { useContext, useEffect } from 'react'
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Await, Link, useNavigate } from "react-router-dom";
 import style from './CallContactList.module.css';
 
 const CallContactList = () => {
 
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate()
 
-  console.log(store.Contacts);
+  console.log(store.contacts);
   useEffect(() => {
     actions.getContacts();
   }, [])
+
+  const handlerEdit = async (contacts) => {
+    navigate("/editContact", { state: { contacts } })
+  }
+
+  const handlerDelete = async (id) => {
+
+    try {
+      const updatedList = store.contacts.filter((contacts) => contacts.id !== id);
+      store.contacts = updatedList;
+      await actions.deleteContact(id);
+    }
+    catch (error) {
+      console.log(error)
+    }
+
+  }
 
   return (
 
     <div className={style.body}>
 
-      {store.Contacts.map((item, index) => (
-
-
+      {store.contacts.map((item, index) => (
 
         <div key={index} className="card mb-3 mx-auto" style={{ maxWidth: "800px" }}>
 
@@ -37,11 +53,10 @@ const CallContactList = () => {
 
             <div className='col-md-1 icons'>
 
-              <i className="fa-solid fa-pencil" style={{ padding: "10px" }}></i>
-              <i className="fa-solid fa-trash"></i>
+              <i className="fa-solid fa-pencil" onClick={() => handlerEdit(item, item.id)} style={{ padding: "10px" }}></i>
+              <i className="fa-solid fa-trash" onClick={() => handlerDelete(item.id)} style={{ color: "#ff3333" }}></i>
 
             </div>
-
 
           </div>
 

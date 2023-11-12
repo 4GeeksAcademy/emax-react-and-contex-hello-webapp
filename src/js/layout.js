@@ -9,6 +9,7 @@ import  AddNewContact  from "./views/AddNewContact";
 import  ContactList  from "./views/ContactList";
 
 import { Navbar } from "./component/navbar";
+import CallEditContact from "./views/CallEditContact";
 
 //create your first component
 const Layout = () => {
@@ -26,7 +27,7 @@ const Layout = () => {
 						<Route exact path="/demo" element={<Demo />} />
 						<Route exact path="/AddNewContact" element={<AddNewContact />} />
 						<Route exact path="/ContactList" element={<ContactList />} />
-						{/* <Route exact path="/single/:theid" element={<Single />} /> */}
+						<Route exact path="/editContact" element={<CallEditContact />} />
 						<Route exact path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 				</ScrollToTop>
